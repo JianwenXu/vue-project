@@ -56,9 +56,9 @@ Thank `you`.Please `Call` Me `Coder`
 [![testImgUrl](http://www.baidu.com/img/bdlogo.gif)](http://www.baidu.com/ "百度Logo")
   >数据结构1
 
-    ```Java
-    public static void main(String[]args){} // Java
-    ```
+  ```Java
+  public static void main(String[]args){} // Java
+  ```
 ```c
 int main(int argc, char *argv[]) // C
 ```
