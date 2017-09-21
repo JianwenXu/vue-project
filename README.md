@@ -37,6 +37,7 @@ Thank `you`.Please `Call` Me `Coder`
 * 昵称：balalal
   * 姓: xu
     * 名：jianwen
+
 缩进：
 >数据结构1
 >>数据结构2
@@ -50,7 +51,8 @@ Thank `you`.Please `Call` Me `Coder`
 
 ![](https://github.com/JianwenXu/vue-project/GFM_img.png)
 
-##为图片加上超链接
+## 为图片加上超链接
+
 [![testImgUrl]](http://baidu.com)
 [testImgUrl]:http://www.baidu.com/img/bdlogo.gif "百度Logo"
 
