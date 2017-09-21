@@ -53,9 +53,8 @@ Thank `you`.Please `Call` Me `Coder`
 
 ## 为图片加上超链接
 
-[![testImgUrl]](http://baidu.com)
-[testImgUrl]:http://www.baidu.com/img/bdlogo.gif "百度Logo"
-
+[![testImgUrl](http://www.baidu.com/img/bdlogo.gif)](http://www.baidu.com/ "百度Logo")
+>数据结构1
 ```Java
 public static void main(String[]args){} // Java
 ```
