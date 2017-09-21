@@ -29,16 +29,15 @@ Thank `you`.Please `Call` Me `Coder`
 
 [百度一下](http://www.baidu.com)
 
-[百度一下](http://www.baidu.com"悬停显示")
+[百度一下](http://www.baidu.com "悬停显示")
 
-*昵称：xu
-*别名：jianwen
-*英文名：balalal
-*昵称：balalal
-  *姓: xu
-    *名：jianwen
-
-    缩进：
+* 昵称：xu
+* 别名：jianwen
+* 英文名：balalal
+* 昵称：balalal
+  * 姓: xu
+    * 名：jianwen
+缩进：
 >数据结构1
 >>数据结构2
 >>>数据结构3
@@ -47,7 +46,7 @@ Thank `you`.Please `Call` Me `Coder`
 
 ![](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505985431383&di=214276595ce703fae005993c5b908d61&imgtype=0&src=http%3A%2F%2Fp4.gexing.com%2FG1%2FM00%2F9C%2F83%2FrBACE1PeHKqieeVsAAB7iC1HB2Q756.jpg)
 
-![timgsa](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505985431383&di=214276595ce703fae005993c5b908d61&imgtype=0&src=http%3A%2F%2Fp4.gexing.com%2FG1%2FM00%2F9C%2F83%2FrBACE1PeHKqieeVsAAB7iC1HB2Q756.jpg"鼠标悬停效果")
+![timgsa](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505985431383&di=214276595ce703fae005993c5b908d61&imgtype=0&src=http%3A%2F%2Fp4.gexing.com%2FG1%2FM00%2F9C%2F83%2FrBACE1PeHKqieeVsAAB7iC1HB2Q756.jpg "鼠标悬停效果")
 
 ![](https://github.com/JianwenXu/vue-project/GFM_img.png)
 
