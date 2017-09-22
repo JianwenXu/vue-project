@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue 学习 2 ( 组件 )</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <!-- 必须注册一个实例 ( 没有那个 new Vue... 就显示不出 )，否则没有显示 ( 为啥呢 ) -->
+  <div id="app">
+    <ol>
+      <todo-item></todo-item>
+      <todo-item></todo-item>
+      <todo-item2
+        v-for="item in groceryList"
+        v-bind:todo="item"
+        v-bind:key="item.id"></todo-item2>
+    </ol>
+  </div>
+  <script type="text/javascript">
+    // 不带属性的自定义组件
+    Vue.component('todo-item', {
+      template: '<li>这是一个待办项</li>'
+    });
+    // 带属性的自定义组件
+    Vue.component('todo-item2', {
+      // todo-item2 组件现在接受一个 props ，名字为 todo
+      props: ['todo'],
+      template: '<li>( 带属性的自定义组件 ) {{ todo.text }}</li>'
+    })
+    var app = new Vue({
+      el: '#app',
+      data: {
+        groceryList: [
+          { id: 0, text:'蔬菜' },
+          { id: 1, text: '奶酪' },
+          { id: 2, text: '随便其他什么人吃的东西' }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
