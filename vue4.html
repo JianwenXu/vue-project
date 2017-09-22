@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue 学习 4 ( 计算属性 )</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <!-- 使用计算属性的目的是不在模板中放入太多的逻辑以便维护 -->
+
+  <!-- 用计算属性实现的需求也可以使用方法实现 -->
+  <!-- 但不同的是 -->
+  <!-- -计算方法是基于它们的依赖进行缓存的 -->
+
+
+  <!-- 接下来看 计算属性 vs 被观察的属性 -->
+
+
+  <div id="app">
+    <p> Original message : " {{ message }} " </p>
+    <p> Computed reversed message : " {{ reversedMessage }} " </p>
+    <!-- 每次重新渲染都会执行该函数取值 -->
+    <p> 使用方法( 函数 methods )实现的获取时间 : {{ now2() }} </p>
+    <!-- 重新渲染之后计算属性不再更新，因为 Date.now() 不是响应式依赖 ( ? ) -->
+    <p> 使用计算方法( computed )实现的获取时间 : {{ now }} </p>
+  </div>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello'
+      },
+      methods: {
+        now2: function () {
+          return Date.now();
+        }
+      },
+      computed: {
+        // a computed getter
+        reversedMessage: function () {
+          // this points to the app instance
+          return this.message.split('').reverse().join('');
+        },
+        now: function () {
+          return Date.now();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

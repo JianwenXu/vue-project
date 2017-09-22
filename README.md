@@ -1,4 +1,5 @@
 ## Vue 学习项目
+#### 学习资源：https://cn.vuejs.org/v2/guide/
 
 >vue.js 是 vue 源文件
 
@@ -7,3 +8,5 @@
 >vue2.html 涉及到了组件
 
 >vue3.html 是一些模板语法
+
+>vue4.html 是计算方法相关的
