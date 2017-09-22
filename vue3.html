@@ -3,10 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>vue 学习 3</title>
-  <script src="https://unpkg.com/vue"></script>
+  <script src="./vue.js"></script>
 </head>
 <body>
+  <!-- 数据绑定最常用的形式就是使用双大括号的文本插值 -->
+  <!-- v-once 指令可以执行一次性的文本插值，数据改变，插值处的内容不会更新 -->
+  <div id="app">
+    <p> 这个值是可以改变的 {{ msg1 }}</p>
+    <p v-once> 这个值将不会改变 {{ msg2 }}</p>
+    <!-- vue.js 模板中提供了完全的 Javascript 表达式支持 -->
+    <!-- 每个绑定都只能包含单个表达式，语句和流控制都不会生效 -->
+    <p>{{ number + 1 }}</p>
+    <p>{{ ok ? 'YES' : 'NO' }}</p>
+    <p>{{ msg1.split('').reverse().join('') }}</p>
+    <!-- v-bind 冒号后面是参数 -->
+    <!-- v-bind 可以用于响应式的更新 HTML 属性 -->
+    <p v-bind:id="'list-' + id">在属性中也是支持 Javascript 表达式的</p>
+    <p :title="'number-' + number"> v-bind 简写 :参数 </p>
+    <!-- v-on 用于监听 DOM 事件，参数是监听的事件名 -->
+    <div v-on:click="doSomething"> v-on 指令参数 </div>
+    <div @click="doSomething"> v-on 简写 @参数 </div>
+    <!-- vue 中的修饰符可以用于指出一个指令应该以特殊方式绑定 -->
+  </div>
+  <!-- 原始 HTML 没看明白 ( https://cn.vuejs.org/v2/guide/syntax.html#原始-HTML ) -->
+  <!-- 下一小节 : 特性 也没看懂 -->
   <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        msg1: 'hello 1',
+        msg2: 'hello 2',
+        number: 10,
+        ok: true,
+        id: 123
+      },
+      methods: {
+        doSomething: function () {
+          console.log('This is a function');
+        }
+      }
+    })
   </script>
 </body>
 </html>
