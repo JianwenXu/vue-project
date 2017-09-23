@@ -6,9 +6,6 @@
   <script src="./vue.js"></script>
 </head>
 <body>
-
-  <!-- 重要：还有一点尾巴没看完 #数组语法 ( https://cn.vuejs.org/v2/guide/class-and-style.html#数组语法-1 ) -->
-
   <!-- v-bind 用于 class 和 style 时, Vue.js 专门增强了它们 ( 表达式的结果类型除了是字符串之外，还可以是对象或数组 ) -->
   <div id="app">
     <!-- 传给 v-bind:class 一个对象 -->
@@ -48,6 +45,13 @@
     <div v-bind:style="styObj2">直接绑定到一个样式对象 ( 短横分隔命名 ) </div>
     <!-- 对象语法常常结合返回对象的计算属性使用 -->
   </div>
+  <!-- v-bind:style 的数组语法可以将多个样式对象应用到一个元素上 -->
+  <!-- eg: <div v-bind:v-bind:style="[baseStyles, overridingStyles]"></div> -->
+
+  <!-- 自动添加前缀 ?? -->
+
+  <!-- 多重值 2.3.0+ ?? -->
+
   <script type="text/javascript">
     Vue.component('my-component', {
       props:['msg'],
