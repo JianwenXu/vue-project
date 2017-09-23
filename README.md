@@ -9,4 +9,4 @@
 
 >vue3.html 是一些模板语法
 
->vue4.html 是计算方法相关的
+>vue4.html 是计算方法 , watch 相关的
