@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>vue 学习 7 ( 列表渲染 )</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <!-- v-for 指令可以将一个数组对应为一组元素 -->
+  <!-- v-for 指令需要使用 item in items 形式的特殊语法 -->
+
+  <!-- 在 v-for 块中，我们拥有对父作用域属性的完全访问权限 ?? -->
+  <div id="app">
+    <ul>
+      <li v-for="item in items">{{ item.msg }}</li>
+    </ul>
+  </div>
+  <div id="app-2"></div>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        items: [
+          {msg: 'msg1'},
+          {msg: 'msg2'},
+          {msg: 'msg3'},
+          {msg: 'msg4'}
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
