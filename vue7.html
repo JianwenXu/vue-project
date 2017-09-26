@@ -6,9 +6,6 @@
   <script src="./vue.js"></script>
 </head>
 <body>
-
-  <!-- 重要 : 到注意事项这里了 -->
-
   <!-- v-for 指令可以将一个数组对应为一组元素 -->
   <!-- v-for 指令需要使用 item in items 形式的特殊语法 -->
   <!-- items 是源数据数组, item 是数组元素迭代的别名 -->
@@ -53,6 +50,29 @@
   <!-- Vue 包含一组观察数组的变异方法 ( push, pop, shift, unshift, splice, sort, reverse ) , 他们会触发视图更新 -->
   <!-- 非变异方法 (filter, concat, slice), 可以用来替换数组，也是很高效的 -->
 
+  <!-- 注意事项 -->
+  <!-- 1.使用索引直接设置一个项的时候，Vue 检测不到，要用其他方式 -->
+  <!-- eg: vm.items[indexOfItem] = newValue ( 无效 ) -->
+  <!-- 转化为: Vue.set(vm.items, indexOfItem, newValue) 或者 vm.item.splice(indexOfItem, 1, newValue) -->
+  <!-- 2.修改数组长度时 -->
+  <!-- eg: vm.items.length = newLength -->
+  <!-- 转化为：vm.items.splice(newLength) -->
+
+  <!-- 对象更改检测注意事项 -->
+  <!-- 由于 JavaScript 的限制，Vue 不能检测对象属性的添加或者删除 -->
+  <!-- 对于已经创建的实例，Vue 不能动态的添加根级别的响应式属性，但是可以使用 Vue.set(object, key, value) - 同上一节 -->
+  <!-- 为一个已有对象赋予多个新属性 ( Object.assign(), _.extend() ) 的时候，使用替换数组的方式 -->
+
+  <!-- 如果要显示一个数组的过滤或者排序副本，而不是假的改变或重置原始数据。这种情况下，创建返回过滤或者培训数组的计算属性 -->
+  <div id="app-3">
+    <ul>
+      <li v-for="n in evenNumbers"> {{ n }} </li>
+      <!-- 在计算属性不适用的情况下，可以是使用一个 method 方法 -->
+      <li v-for="n in even(numbers)"> {{ n }} </li>
+       <!-- v-for 也可以取整数，在这种情况下，它将重复多次模板 ( 下面的实例从 1 开始，截止到 10 ) -->
+       <li v-for="n in 10"> {{ n }} </li>
+    </ul>
+  </div>
   <script type="text/javascript">
     var app = new Vue({
       el: '#app',
@@ -85,6 +105,26 @@
           firstName: 'John',
           lastName: 'Doe',
           age: 30
+        }
+      }
+    });
+    var app3 = new Vue({
+      el: '#app-3',
+      data: {
+        numbers: [1, 2, 3, 4, 5]
+      },
+      computed: {
+        evenNumbers: function () {
+          return this.numbers.filter(function (number) {
+            return number % 2 === 0;
+          });
+        }
+      },
+      methods: {
+        even: function (numbers) {
+          return numbers.filter(function (number) {
+            return number % 2;
+          });
         }
       }
     });
