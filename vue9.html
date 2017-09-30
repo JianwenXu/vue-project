@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue 学习 9 ( 表单输入绑定 )</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <!-- v-model 在表单控件元素上可以创建双向数据绑定 -->
+  <!-- v-model 会忽略掉所有表单元素的 value, checked, selected 特性的属性值，因为它会选择 Vue 示例数据来作为具体的值 -->
+  <div id="app-1">
+    <p>单行文本</p>
+    <input v-model="msg1" placeholder="edit me" />
+    <p>your input is : {{ msg1 }} </p>
+    <p>多行文本</p>
+    <textarea v-model="msg2" placeholder="add nultiple lines"></textarea>
+    <p style="white-space: pre-line;"> {{ msg2 }} </p>
+    <p>多选框</p>
+    <input type="checkbox" id="checkbox" v-model="checked" />
+    <label for="checkbox"> {{ checked }} </label>
+  </div>
+  <div id="app-2">
+    <p>多个勾选框，绑定到同一个数组</p>
+    <input type="checkbox" id="Jack" value="Jack" v-model="checkedNames" />
+    <label for="Jack"> Jack </label>
+    <input type="checkbox" id="John" value="John" v-model="checkedNames" />
+    <label for="John"> John </label>
+    <input type="checkbox" id="Mike" value="Mike" v-model="checkedNames" />
+    <label for="Mike"> Mike </label>
+    <p>你的选择是: {{ checkedNames.join() }} </p>
+  </div>
+  <div id="app-3">
+    <p>单选按钮</p>
+    <input type="radio" id="one" value="one" v-model="picked">
+    <label for="one"> ONE </label>
+    <input type="radio" id="two" value="two" v-model="picked">
+    <label for="two"> TWO </label>
+    <br />
+    <p>你的选择是： {{ picked }} </p>
+  </div>
+  <div id="app-4">
+    <p>下拉列表</p>
+    <select v-model="selected" placeholder="请选择">
+      <option disabled value="">请选择</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+    <p>你的选择是: {{ selected }} </p>
+    <select v-model="selected2">
+      <option disabled value="">请选择</option>
+      <option value="123">A</option>
+      <option value="098">B</option>
+      <option value="555">C</option>
+    </select>
+    <p>你的选择是: {{ selected2 }} </p>
+  </div>
+  <div id="app-5">
+    <!-- 这个实例不能实现多选，不知道为啥 -->
+    <p>多选列表(绑定到一个数组)</p>
+    <select v-model="selected" multiple style="width: 50px;">
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+    <p>你的选择是 {{ selected }} </p>
+  </div>
+  <div id="app-6">
+    <p>动态渲染( 用 v-for 实现 )</p>
+    <select v-model="selected">
+      <option
+        v-for="item in items"
+        :value="item.value"
+        > {{ item.title }} </option>
+    </select>
+    <p>你的选择是 {{ selected }}</p>
+  </div>
+
+  <!-- v-model 绑定的 value 值通常是静态字符串(对于勾选框是逻辑值) -->
+  <!-- 但是我们可以使用 v-bind 将 value 绑定到实例的一个动态属性上 -->
+  <div id="app-7">
+    <div>
+      <p>复选框</p>
+      <input type="checkbox" id="checkbox" v-model='checked' :true-value="msg1" :false-value="msg2" />
+      <label for="checkbox"> 值绑定多选框 </label>
+      <p>动态绑定 value 的值 : {{ checked }} </p>
+    </div>
+    <div>
+      <p>单选按钮</p>
+      <input type="radio" id="testRadio" v-model="picked" :value="msg3" />
+      <label for="testRadio"> 值绑定单选按钮1 </label>
+      <input type="radio" id="testRadio2" v-model="picked" :value="123" />
+      <label for="testRadio2"> 值绑定单选按钮2 </label>
+      <p> 动态绑定 value 的值 : {{ picked }} </p>
+    </div>
+    <div>
+      <p>选择列表的选项</p>
+      <select v-model="selected">
+        <option :value="msg4">CCCC</option>
+        <option :value="{num: 9999999}">DDDD</option>
+        <option value="{num: 9999999}">FFFFF</option>
+        <option value="123">AAAA</option>
+        <option :value="67890000">EEEEEE</option>
+        <option>BBBB</option>
+      </select>
+      <p> 动态绑定 value 的值 : {{ selected }} , {{ typeof selected }} </p>
+    </div>
+  </div>
+
+  <!-- 修饰符 : .lazy, .number, .trim -->
+  <!-- https://cn.vuejs.org/v2/guide/forms.html#修饰符 -->
+
+  <!-- v-model 与组件 -->
+  <!-- https://cn.vuejs.org/v2/guide/forms.html#v-model-与组件 -->
+
+  <script type="text/javascript">
+    var app1 = new Vue({
+      el: '#app-1',
+      data: {
+        msg1: '',
+        msg2: '',
+        checked: false
+      }
+    });
+    var app2 = new Vue({
+      el: '#app-2',
+      data: {
+        checkedNames: ["Jack"]
+      }
+    });
+    var app3 = new Vue({
+      el: '#app-3',
+      data: {
+        picked: ''
+      }
+    });
+    var app4 = new Vue({
+      el: '#app-4',
+      data: {
+        selected: '',
+        selected2: ''
+      }
+    });
+    var app5 = new Vue({
+      el: '#app-5',
+      data: {
+        selected: []
+      }
+    });
+    var app6 = new Vue({
+      el: '#app-6',
+      data: {
+        selected: '',
+        items: [
+          { value: 123, title: 'one' },
+          { value: 456, title: 'two' },
+          { value: 789, title: 'three' },
+        ]
+      }
+    });
+    var app7 = new Vue({
+      el: '#app-7',
+      data: {
+        checked: '',
+        picked:'',
+        selected: '',
+        msg1: '这是 true-value',
+        msg2: '这是 false-value',
+        msg3: '这是单选选择的时候的 value',
+        msg4: '某个下拉列表的  value'
+      }
+    });
+  </script>
+</body>
+</html>
