@@ -71,9 +71,41 @@
       <li v-for="n in even(numbers)"> {{ n }} </li>
        <!-- v-for 也可以取整数，在这种情况下，它将重复多次模板 ( 下面的实例从 1 开始，截止到 10 ) -->
        <li v-for="n in 10"> {{ n }} </li>
+       <!-- 可以配合  v-for 和 <template> 渲染多个元素 -->
+        <!-- v-for 和 v-if 一起使用的时候， v-for 的优先级更高 -->
+        <!-- 如果想要实现有条件的跳过循环的执行，可以将 v-if 置于外层元素（或者 <template>）上 -->
+
+
+        <!-- 在自定义组件中，可以向对普通元素一样使用 v-for -->
+
+        <!-- 2.2.0+ 的版本中，当在组件中使用 v-for 的时候， key 值是必须的 -->
+        <!-- 然而他不能自动传递数据到组件中，因为组件有自己独立的作用域。为了传递迭代数据到组件中，我们要使用 props. 这样可以明确数据的来源使组件可重用. -->
+    </ul>
+  </div>
+  <div id="app-4">
+    <input v-model="newTodoText"
+      v-on:keyup.enter="addNewTodo"
+      placeholder="Add a todo" />
+    <ul>
+      <li
+        is="todo-item"
+        v-for="(todo, index) in todos"
+        v-bind:key="todo.id"
+        v-bind:title="todo.title"
+        v-on:remove="todos.splice(index, 1)" />
     </ul>
   </div>
   <script type="text/javascript">
+    Vue.component('todo-item', {
+      template: '\
+        <li>\
+          {{ title }}\
+          <button v-on:click="$emit(\'remove\')"> X </button>\
+        </li>\
+      ',
+      // 必须使用props,否则会报错
+      props: ['title']
+    })
     var app = new Vue({
       el: '#app',
       data: {
@@ -125,6 +157,27 @@
           return numbers.filter(function (number) {
             return number % 2;
           });
+        }
+      }
+    });
+    var app4 = new Vue({
+      el: '#app-4',
+      data: {
+        newTodoText: '',
+        todos: [
+          { id: 1, title: 'Do the dishes' },
+          { id: 2, title: 'Take out the trash' },
+          { id: 3, title: 'Mow the lawn' }
+        ],
+        nextTodoId: 4
+      },
+      methods: {
+        addNewTodo: function () {
+          this.todos.push({
+            id: this.nextTodoId++,
+            title: this.newTodoText
+          });
+          this.newTodoText = '';
         }
       }
     });

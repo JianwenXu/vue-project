@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue 学习 8 ( 事件处理 )</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <!-- 可以使用 v-on 指令监听 DOM 事件来触发一些 JavaScript 代码 -->
+  <div id="app-1">
+    <p>这个按钮被点击了 {{ count }} 次</p>
+    <button @click="count += 1"> 加1 </button>
+  </div>
+  <!-- 方法事件处理器 : 分离 view 和 control -->
+  <div id="app-2">
+    <button @click="greet"> print msg (使用方法事件处理器)</button>
+    <!-- 可以在控制台里使用 app2.greet() 直接调用方法(hello Mike undefined) -->
+  </div>
+  <!-- 内联处理器里的方法 -->
+  <div id="app-3">
+    <button @click="say('hi')"> say hi </button>
+    <button @click="say('what')"> say what </button>
+    <!-- 有时，我们需要在内联语法处理器中访问原生 DOM 事件，可以用特殊变量 $event 把他传入方法 -->
+    <button @click="warn('Form cannot be submitted yet.', $event)"> submit </button>
+  </div>
+
+  <!-- https://cn.vuejs.org/v2/guide/events.html -->
+  <!-- 事件修饰符 : .stop, .prevent, .capture, .self, .once -->
+  <!-- 1.修饰符可以串联; 2.使用修饰符的时候，顺序很重要 -->
+  <!-- 另(2.1.4新增) : .once 修饰符还能被用到自定义的组件事件上, 其他的不行 -->
+
+  <!-- https://cn.vuejs.org/v2/guide/events.html -->
+  <!-- 键值修饰符 : .enter, .tab, .delete, .esc, .space, .up, .down, .left, .right -->
+  <!-- 可以通过全局的 config.keyCodes 对象自定义键值修饰符别名 -->
+  <!-- 另(2.1.0新增 修饰键): .ctrl, .alt, .shift, .meta -->
+  <!-- 另(2.1.0新增 鼠标按钮修饰符): .left, .right, .middle -->
+
+  <!-- 为什么在 HTML 中监听事件 -->
+  <!-- https://cn.vuejs.org/v2/guide/events.html#为什么在-HTML-中监听事件 -->
+
+  <script type="text/javascript">
+    var app1 = new Vue({
+      el: '#app-1',
+      data: {
+        count: 0
+      }
+    });
+    var app2 = new Vue({
+      el: '#app-2',
+      data: {
+        name: 'Mike'
+      },
+      methods: {
+        greet: function (event) {
+          console.log('hello ', this.name);
+          if (event) {
+            console.log(event.target.tagName);
+          }
+        }
+      }
+    });
+    var app3 = new Vue({
+      el: '#app-3',
+      methods: {
+        say: function (msg) {
+          console.log('say ', msg);
+        },
+        warn: function (msg, event) {
+          if (event) {
+            event.preventDefault();
+          }
+          console.log(msg);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
