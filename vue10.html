@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue 学习 10 ( 组件 )</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <!-- Vue.component(tagName, options) 可以注册一个全局组件 -->
+  <!-- 不过自定义标签的命名不强制推荐W3C规则（小写，并且包含一个短杠），但是推荐这么做 -->
+  <!-- 确保在初始化根实例之前注册组件 -->
+  <div id="app-1">
+    <my-component></my-component>
+  </div>
+  <script type="text/javascript">
+    Vue.component('my-component', {
+      template: '<div> A custom component! </div>'
+    });
+    var app1 = new Vue({
+      el: '#app-1'
+    });
+  </script>
+</body>
+</html>
